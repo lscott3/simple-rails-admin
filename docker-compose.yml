@@ -1,0 +1,21 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    env_file:
+      - .development.env
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/simple-rails-admin
+      - bundler_gems:/usr/local/bundle/
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+volumes:
+  bundler_gems:
+  postgres:

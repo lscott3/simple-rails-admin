@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SimpleRailsAdmin</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <% if user_signed_in? %>
+      <h3>Signed in as <%= current_user.email %></h3>
+    <% end %>
+    <ul>
+      <% if user_signed_in? %>
+        <li><%= link_to 'Home', root_path %></li>
+        <% if current_user.is_admin? %>
+          <li><%= link_to 'Admin Cars', admin_cars_path %></li>
+        <% end %>
+        <li><%= link_to 'Cars', cars_path %></li>
+        <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %> </li>
+      <% end %>
+    </ul>
+    <%= yield %>
+  </body>
+</html>

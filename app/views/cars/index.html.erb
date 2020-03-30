@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Cars</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Make</th>
+      <th>Model</th>
+      <th>Year</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cars.each do |car| %>
+      <tr>
+        <td><%= car.make %></td>
+        <td><%= car.model %></td>
+        <td><%= car.year %></td>
+        <td><%= link_to 'Show', car %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
